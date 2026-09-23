@@ -1,6 +1,18 @@
 [gd_scene format=3 uid="uid://d2dppyjnxhgyy"]
 
-[node name="CSGBox3D" type="CSGBox3D" unique_id=1133652268]
-use_collision = true
+[ext_resource type="Texture2D" uid="uid://bde2id7rspd1g" path="res://Assets/materials/concrete_hd/concrete_tex.png" id="1_c23k3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1790002280]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jwy2u"]
+albedo_color = Color(0.7919991, 0.79199916, 0.7919991, 1)
+albedo_texture = ExtResource("1_c23k3")
+
+[sub_resource type="BoxMesh" id="BoxMesh_3hq0k"]
+material = SubResource("StandardMaterial3D_jwy2u")
+size = Vector3(16, 2, 1)
+
+[node name="StaticBody3D" type="StaticBody3D" unique_id=1760271203]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=867829663]
+mesh = SubResource("BoxMesh_3hq0k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=188313256]

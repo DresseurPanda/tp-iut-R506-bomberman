@@ -1,6 +1,19 @@
 [gd_scene format=3 uid="uid://dhsx1k650vt50"]
 
-[node name="CSGBox3D" type="CSGBox3D" unique_id=1133652268]
-use_collision = true
+[ext_resource type="Texture2D" uid="uid://bnctx18ytsbk3" path="res://Assets/materials/brickOrange/ORANGE_BRICK_DISP.png" id="1_imjnt"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1790002280]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qof5w"]
+albedo_texture = ExtResource("1_imjnt")
+
+[sub_resource type="BoxMesh" id="BoxMesh_3g0t1"]
+material = SubResource("StandardMaterial3D_qof5w")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iovhb"]
+
+[node name="Pillar" type="StaticBody3D" unique_id=846207598]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1588493721]
+mesh = SubResource("BoxMesh_3g0t1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1392017647]
+shape = SubResource("BoxShape3D_iovhb")
