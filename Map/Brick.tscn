@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bd6ob50i41etu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvqiw"]
+
+[node name="CSGBox3D" type="CSGBox3D" unique_id=1133652268]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1414402558]
+material_override = SubResource("StandardMaterial3D_lvqiw")
+modulate = Color(0.7813729, 0.96527785, 0.19708559, 1)

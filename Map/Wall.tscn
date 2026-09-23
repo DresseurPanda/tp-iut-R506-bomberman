@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d2dppyjnxhgyy"]
+
+[node name="CSGBox3D" type="CSGBox3D" unique_id=1133652268]
+use_collision = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1790002280]
