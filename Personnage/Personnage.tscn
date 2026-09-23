@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://8qye64eqt22y"]
+
+[ext_resource type="Script" uid="uid://bdxje06k7bjcv" path="res://Personnage/personnage.gd" id="1_hpy36"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xon3y"]
+height = 2.0112305
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hpy36"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_qpu3w"]
+
+[node name="Personnage" type="CharacterBody3D" unique_id=515754185]
+motion_mode = 1
+script = ExtResource("1_hpy36")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1063427851]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.00061035156, 0)
+shape = SubResource("CapsuleShape3D_xon3y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1450027965]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_hpy36")
+surface_material_override/0 = SubResource("ORMMaterial3D_qpu3w")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=126363695]
+transform = Transform3D(1.17941376e-07, -0.92454606, 0.38107038, -6.662846e-08, 0.38107038, 0.92454606, -1, -1.3443236e-07, -1.6657115e-08, 2, 3, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1480573276]
+transform = Transform3D(-4.371139e-08, -0.92454606, 0.38107038, 0, 0.38107038, 0.92454606, -1, 4.041319e-08, -1.6657115e-08, 2, 4, 0)
