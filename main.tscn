@@ -1,3 +1,7 @@
 [gd_scene format=3 uid="uid://r5c43yam8pug"]
 
+[ext_resource type="PackedScene" uid="uid://8qye64eqt22y" path="res://Personnage/Personnage.tscn" id="1_ig7tw"]
+
 [node name="Node3D" type="Node3D" unique_id=1559146486]
+
+[node name="Personnage" parent="." unique_id=515754185 instance=ExtResource("1_ig7tw")]
