@@ -24,11 +24,13 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
-	
+
 func take_damage() -> void:
 	health-=1
+	print("Une vie en moins :(")
 	if health ==0:
 		mort()
 
 func mort() -> void:
-	pass
+	print("Tu es mort :(")
+	

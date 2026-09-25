@@ -1,25 +1,27 @@
 [gd_scene format=3 uid="uid://8qye64eqt22y"]
 
 [ext_resource type="Script" uid="uid://bdxje06k7bjcv" path="res://Personnage/personnage.gd" id="1_hpy36"]
+[ext_resource type="Script" uid="uid://bjldt802b157p" path="res://Personnage/collision_ennemi.gd" id="2_qpu3w"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xon3y"]
-height = 2.0112305
+radius = 0.5839844
+height = 2.2567902
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_hpy36"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_qpu3w"]
 
-[node name="Personnage" type="CharacterBody3D" unique_id=515754185]
+[node name="Personnage" type="CharacterBody3D" unique_id=515754185 groups=["personnage"]]
 slide_on_ceiling = false
 floor_stop_on_slope = false
 floor_block_on_wall = false
 script = ExtResource("1_hpy36")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1063427851]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1063427851 groups=["personnage"]]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.00061035156, 0)
 shape = SubResource("CapsuleShape3D_xon3y")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1450027965]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1450027965 groups=["personnage"]]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_hpy36")
 surface_material_override/0 = SubResource("ORMMaterial3D_qpu3w")
@@ -30,3 +32,13 @@ fov = 88.32827
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1480573276]
 transform = Transform3D(1.3113416e-07, -1, -4.371139e-08, 7.642742e-15, -4.371139e-08, 1, -1, -1.3113416e-07, 1.9106855e-15, 0.034168243, 7.7358017, 3.073316)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1917377632 groups=["personnage"]]
+monitorable = false
+script = ExtResource("2_qpu3w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1602941946 groups=["personnage"]]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.0076889032, 0)
+shape = SubResource("CapsuleShape3D_xon3y")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
