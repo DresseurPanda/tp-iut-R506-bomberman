@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ciesvyoke4dvj" path="res://Map/base_map.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://d2dppyjnxhgyy" path="res://Map/Wall.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bnhvrctt0q4vw" path="res://Ennemis/ennemi.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bgk5gkvrq7eeg" path="res://Bombe/bombe.tscn" id="5_1bvp3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ig7tw"]
 
@@ -57,3 +58,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8.5
 
 [node name="Ennemi" parent="." unique_id=1728542207 instance=ExtResource("4_1bvp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="Bomb" parent="." unique_id=646015934 instance=ExtResource("5_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.053961, 1.356245, 0)

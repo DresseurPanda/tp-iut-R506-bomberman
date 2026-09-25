@@ -1,4 +1,24 @@
 [gd_scene format=3 uid="uid://bgk5gkvrq7eeg"]
 
-[node name="Bombe" type="CSGSphere3D" unique_id=1983729969]
-use_collision = true
+[ext_resource type="Script" uid="uid://dxrd636bgx76a" path="res://Bombe/bomb.gd" id="1_ux0ho"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i857s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i857s"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_i857s"]
+material = SubResource("StandardMaterial3D_i857s")
+
+[node name="Bomb" type="Area3D" unique_id=646015934]
+script = ExtResource("1_ux0ho")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=49400015]
+rotation_order = 3
+shape = SubResource("SphereShape3D_i857s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=650145041]
+mesh = SubResource("SphereMesh_i857s")
+
+[node name="Timer" type="Timer" parent="." unique_id=1073649688]
+wait_time = 3.0
