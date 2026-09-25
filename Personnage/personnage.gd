@@ -1,17 +1,22 @@
+
+
 extends CharacterBody3D
 
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+@onready var health = 3
+
+
 
 func _physics_process(_delta: float) -> void:
 	# Add the gravity.
 	#if not is_on_floor():
 		#velocity += get_gravity() * delta
-
+		
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("ui_accept"): #and is_on_floor()
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
@@ -26,3 +31,11 @@ func _physics_process(_delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+	
+func take_damage() -> void:
+	health-=1
+	if health ==0:
+		mort()
+
+func mort() -> void:
+	pass

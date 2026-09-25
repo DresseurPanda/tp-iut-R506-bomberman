@@ -2,6 +2,23 @@
 
 [ext_resource type="PackedScene" uid="uid://8qye64eqt22y" path="res://Personnage/Personnage.tscn" id="1_ig7tw"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ig7tw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
+
 [node name="Node3D" type="Node3D" unique_id=1559146486]
 
 [node name="Personnage" parent="." unique_id=515754185 instance=ExtResource("1_ig7tw")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1374439993]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07343364, 0, 1.7824214)
+physics_material_override = SubResource("PhysicsMaterial_ig7tw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=224104989]
+shape = SubResource("BoxShape3D_0xm2m")
+debug_color = Color(5.0880766, 11.497116, 13.328268, 0.41960785)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=2029094749]
+mesh = SubResource("BoxMesh_h2yge")

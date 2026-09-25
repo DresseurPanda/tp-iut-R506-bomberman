@@ -10,7 +10,9 @@ height = 2.0112305
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_qpu3w"]
 
 [node name="Personnage" type="CharacterBody3D" unique_id=515754185]
-motion_mode = 1
+slide_on_ceiling = false
+floor_stop_on_slope = false
+floor_block_on_wall = false
 script = ExtResource("1_hpy36")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1063427851]
@@ -23,7 +25,7 @@ mesh = SubResource("CapsuleMesh_hpy36")
 surface_material_override/0 = SubResource("ORMMaterial3D_qpu3w")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=126363695]
-transform = Transform3D(1.17941376e-07, -0.92454606, 0.38107038, -6.662846e-08, 0.38107038, 0.92454606, -1, -1.3443236e-07, -1.6657115e-08, 2, 3, 0)
+transform = Transform3D(1, -1.4924001e-07, 6.181724e-08, 6.181724e-08, 0.7071068, 0.7071067, -1.4924001e-07, -0.7071067, 0.7071068, 0, 2, 2)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1480573276]
 transform = Transform3D(-4.371139e-08, -0.92454606, 0.38107038, 0, 0.38107038, 0.92454606, -1, 4.041319e-08, -1.6657115e-08, 2, 4, 0)
