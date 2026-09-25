@@ -8,7 +8,7 @@ albedo_texture = ExtResource("1_l225q")
 
 [sub_resource type="BoxMesh" id="BoxMesh_5j2hf"]
 material = SubResource("StandardMaterial3D_27eot")
-size = Vector3(16, 1, 16)
+size = Vector3(17, 1, 16)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l225q"]
 size = Vector3(16, 1, 16)

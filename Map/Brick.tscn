@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://og10k7c0hu3p"]
+
+[ext_resource type="Script" uid="uid://dbxu5hfttffcb" path="res://Scripts/Brick_script.gd" id="1_plp72"]
+[ext_resource type="PackedScene" uid="uid://xx7x46yrad4" path="res://Assets/materials/Bricks/mario_brick_block.glb" id="2_2mpi8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uerxu"]
+size = Vector3(11.186529, 11.361572, 11.197998)
+
+[node name="Brick" type="StaticBody3D" unique_id=451105406]
+transform = Transform3D(0.009, 0, 0, 0, 0.009, 0, 0, 0, 0.009, 0, 0, 0)
+script = ExtResource("1_plp72")
+
+[node name="Sketchfab_Scene" parent="." unique_id=1488374834 instance=ExtResource("2_2mpi8")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=379869161]
+transform = Transform3D(9.999999, 0, 0, 0, 9.999999, 0, 0, 0, 9.999999, -0.53859353, 52.91626, 16.961666)
+shape = SubResource("BoxShape3D_uerxu")
