@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ciesvyoke4dvj"]
+
+[ext_resource type="Texture2D" uid="uid://bde2id7rspd1g" path="res://Assets/materials/concrete_hd/concrete_tex.png" id="1_l225q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_27eot"]
+albedo_color = Color(0.3403393, 0.34033933, 0.3403393, 1)
+albedo_texture = ExtResource("1_l225q")
+
+[sub_resource type="BoxMesh" id="BoxMesh_5j2hf"]
+material = SubResource("StandardMaterial3D_27eot")
+size = Vector3(16, 1, 16)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l225q"]
+size = Vector3(16, 1, 16)
+
+[node name="Floor" type="StaticBody3D" unique_id=2122610518]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1697947638]
+mesh = SubResource("BoxMesh_5j2hf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1294390107]
+shape = SubResource("BoxShape3D_l225q")
+debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
