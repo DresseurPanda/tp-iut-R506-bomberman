@@ -1,3 +1,5 @@
+[gd_scene format=3 uid="uid://r5c43yam8pug"]
+
 [ext_resource type="PackedScene" uid="uid://8qye64eqt22y" path="res://Personnage/Personnage.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ciesvyoke4dvj" path="res://Map/base_map.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://d2dppyjnxhgyy" path="res://Map/Wall.tscn" id="3_1bvp3"]
