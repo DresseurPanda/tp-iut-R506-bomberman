@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://kuhe6h68h61a"]
+
+[ext_resource type="Script" uid="uid://cftocntc3d1qw" path="res://Scripts/Brick_script.gd" id="1_mvtwd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y6e7q"]
+size = Vector3(5.576172, 5.433235, 5.6414185)
+
+[node name="Sketchfab_Scene" unique_id=643312567]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1579323238]
+script = ExtResource("1_mvtwd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1476541539]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0.21484375, 55.83351, 16.638794)
+shape = SubResource("BoxShape3D_y6e7q")
