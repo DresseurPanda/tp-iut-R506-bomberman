@@ -1,12 +1,11 @@
 extends CharacterBody3D
 
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+const BOMB_SCENE := preload("res://Bombe/bombe.tscn")
+
 @onready var health = 3
-
-
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -24,10 +23,18 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
-	
+
+	if Input.is_action_just_pressed("poser_bombe"):
+		poser_bombe()
+
+func poser_bombe() -> void:
+	var bomb = BOMB_SCENE.instantiate()
+	get_tree().current_scene.add_child(bomb)
+	bomb.global_position = global_position.round()
+
 func take_damage() -> void:
-	health-=1
-	if health ==0:
+	health -= 1
+	if health == 0:
 		mort()
 
 func mort() -> void:
