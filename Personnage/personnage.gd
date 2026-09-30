@@ -5,8 +5,10 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 @onready var health = 3
+@onready var ennemis
 
-
+func _ready() -> void:
+	pass
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -24,11 +26,15 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
-	
+
 func take_damage() -> void:
 	health-=1
+	print("Une vie en moins :(")
 	if health ==0:
 		mort()
+	global_position= Vector3(0,0,0)
 
 func mort() -> void:
-	pass
+	get_tree().change_scene_to_file("res://GameOver/game_over.tscn")
+	print("Tu es mort :(")
+	

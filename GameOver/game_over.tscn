@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bk1ok3iccp4f4"]
+
+[ext_resource type="Script" uid="uid://b5lwydm7xphxi" path="res://GameOver/game_over.gd" id="1_w45li"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c6a5o"]
+font_size = 100
+
+[node name="Game Over" type="ColorRect" unique_id=1730168979]
+offset_right = 1148.0
+offset_bottom = 649.0
+color = Color(0.0454818, 0.057526425, 0.073315926, 1)
+script = ExtResource("1_w45li")
+
+[node name="Label" type="Label" parent="." unique_id=488350121]
+layout_mode = 0
+offset_left = 287.0
+offset_top = 174.0
+offset_right = 870.0
+offset_bottom = 417.0
+theme_override_font_sizes/font_size = 50
+text = "Game over"
+label_settings = SubResource("LabelSettings_c6a5o")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=454925492]
+layout_mode = 0
+offset_left = 514.0
+offset_top = 453.0
+offset_right = 630.0
+offset_bottom = 518.0
+theme_override_font_sizes/font_size = 30
+text = "Rejouer ?"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

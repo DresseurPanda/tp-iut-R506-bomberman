@@ -18,7 +18,7 @@
 [node name="Node3D" type="Node3D" unique_id=1559146486]
 
 [node name="Personnage" parent="." unique_id=515754185 instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008467674, 0, 0.013874054)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1374439993]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07343364, 0, 1.7824214)
@@ -66,8 +66,14 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8.5,
 [node name="StaticBody3D5" parent="Arena" unique_id=1026807936 instance=ExtResource("3_1bvp3")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8.5, 1, 0)
 
-[node name="Ennemi" parent="." unique_id=1728542207 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+[node name="Node3D" type="Node3D" parent="." unique_id=1948269023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
 
-[node name="Bomb" parent="." unique_id=646015934 instance=ExtResource("5_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.053961, 1.356245, 0)
+[node name="Ennemi" parent="Node3D" unique_id=1728542207 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08, 5)
+
+[node name="Ennemi2" parent="Node3D" unique_id=1139539011 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5448414, -0.058855608, 5.129205)
+
+[node name="Ennemi3" parent="Node3D" unique_id=767270259 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0307815, -0.08518715, 4.8809905)
