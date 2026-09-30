@@ -23,8 +23,9 @@ mesh = SubResource("CapsuleMesh_hpy36")
 surface_material_override/0 = SubResource("ORMMaterial3D_qpu3w")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=126363695]
-transform = Transform3D(1.17941376e-07, -0.92454606, 0.38107038, -6.662846e-08, 0.38107038, 0.92454606, -1, -1.3443236e-07, -1.6657115e-08, 4, 4, 0)
+transform = Transform3D(-4.371139e-08, -0.5060338, 0.86251366, 0, 0.86251366, 0.5060338, -1, 2.2119439e-08, -3.770167e-08, 4, 3.293469, 0)
 fov = 88.32827
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1480573276]
-transform = Transform3D(1.3113416e-07, -1, -4.371139e-08, 7.642742e-15, -4.371139e-08, 1, -1, -1.3113416e-07, 1.9106855e-15, 0.034168243, 7.7358017, 3.073316)
+transform = Transform3D(-4.371139e-08, -0.7965299, 0.6045991, 0, 0.6045991, 0.7965299, -1, 3.481743e-08, -2.6427866e-08, 8.962312, 12.732149, -0.052806854)
+light_energy = 1.3

@@ -1,23 +1,48 @@
 [gd_scene format=3 uid="uid://d2dppyjnxhgyy"]
 
-[ext_resource type="Texture2D" uid="uid://bde2id7rspd1g" path="res://Assets/materials/concrete_hd/concrete_tex.png" id="1_c23k3"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jwy2u"]
-albedo_color = Color(0.7919991, 0.79199916, 0.7919991, 1)
-albedo_texture = ExtResource("1_c23k3")
-
-[sub_resource type="BoxMesh" id="BoxMesh_3hq0k"]
-material = SubResource("StandardMaterial3D_jwy2u")
-size = Vector3(17, 2, 1)
+[ext_resource type="PackedScene" uid="uid://d0yin121wsnjg" path="res://Assets/materials/Map/old_lantern.glb" id="2_3hq0k"]
+[ext_resource type="PackedScene" uid="uid://c5mv0qkfpjwyo" path="res://Assets/materials/Map/stylized_fence.glb" id="2_jwy2u"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c23k3"]
-size = Vector3(17.060165, 1.984314, 1)
+size = Vector3(17.137722, 5.1424255, 0.42993164)
 
 [node name="StaticBody3D" type="StaticBody3D" unique_id=1760271203]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=867829663]
-mesh = SubResource("BoxMesh_3hq0k")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.46301222)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=188313256]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0075149536, -9.1552734e-05, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.056822777, 1.8506949, 0.59170544)
 shape = SubResource("BoxShape3D_c23k3")
+
+[node name="Sketchfab_Scene" parent="." unique_id=2132415586 instance=ExtResource("2_jwy2u")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -8.366196, -0.5002175, 0.567132)
+
+[node name="Sketchfab_Scene2" parent="." unique_id=1347172980 instance=ExtResource("2_jwy2u")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -6.278626, -0.5002175, 0.567132)
+
+[node name="Sketchfab_Scene3" parent="." unique_id=806754912 instance=ExtResource("2_jwy2u")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -4.187277, -0.5002175, 0.567132)
+
+[node name="Sketchfab_Scene4" parent="." unique_id=1054229550 instance=ExtResource("2_jwy2u")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2.0997071, -0.5002175, 0.567132)
+
+[node name="Sketchfab_Scene5" parent="." unique_id=1014468233 instance=ExtResource("2_jwy2u")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.0010728836, -0.5002175, 0.567132)
+
+[node name="Sketchfab_Scene6" parent="." unique_id=1037090092 instance=ExtResource("2_jwy2u")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 2.0886426, -0.5002175, 0.567132)
+
+[node name="Sketchfab_Scene7" parent="." unique_id=566233028 instance=ExtResource("2_jwy2u")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 4.1799917, -0.5002175, 0.567132)
+
+[node name="Sketchfab_Scene8" parent="." unique_id=852124147 instance=ExtResource("2_jwy2u")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 6.2675614, -0.5002175, 0.567132)
+
+[node name="Sketchfab_Scene9" parent="." unique_id=149337312 instance=ExtResource("2_3hq0k")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 8.451933, 0.98166335, 0.5724702)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1338167865]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.571208, 1.0636224, 0.5869503)
+light_energy = 4.565
+light_size = 0.095
+omni_range = 2.841
+omni_attenuation = 0.47

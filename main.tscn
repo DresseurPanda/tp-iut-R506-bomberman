@@ -10,21 +10,21 @@
 [node name="Node3D" type="Node3D" unique_id=1559146486]
 
 [node name="Personnage" parent="." unique_id=515754185 instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4571762, 0.6472354, -0.22759962)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.569755, 1.2827461, 7.4792747)
 
 [node name="Floor" parent="." unique_id=2122610518 instance=ExtResource("2_h2yge")]
 
 [node name="Mur du bas" parent="." unique_id=1760271203 instance=ExtResource("3_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 1, 9)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.004, 1.0194974, 9.243443)
 
 [node name="Mur du haut" parent="." unique_id=1051022988 instance=ExtResource("3_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 1, -9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 1, -9.330208)
 
 [node name="Mur de droite" parent="." unique_id=1450692660 instance=ExtResource("3_1bvp3")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9, 1, 0)
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 9.334234, 1, 0)
 
 [node name="Mur de gauche" parent="." unique_id=1026807936 instance=ExtResource("3_1bvp3")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9, 1, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.284534, 1, 0)
 
 [node name="level_generator" type="Node3D" parent="." unique_id=801460584]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
