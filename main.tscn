@@ -6,13 +6,34 @@
 [ext_resource type="PackedScene" uid="uid://og10k7c0hu3p" path="res://Map/Brick.tscn" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dhsx1k650vt50" path="res://Map/Pillar.tscn" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://1p1snrmj3emt" path="res://level_generator.gd" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://bnhvrctt0q4vw" path="res://Ennemis/ennemi.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bgk5gkvrq7eeg" path="res://Bombe/bombe.tscn" id="5_1bvp3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ig7tw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
 
 [node name="Node3D" type="Node3D" unique_id=1559146486]
 
 [node name="Personnage" parent="." unique_id=515754185 instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4571762, 0.6472354, -0.22759962)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008467674, 0, 0.013874054)
 
-[node name="Floor" parent="." unique_id=2122610518 instance=ExtResource("2_h2yge")]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1374439993]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07343364, 0, 1.7824214)
+physics_material_override = SubResource("PhysicsMaterial_ig7tw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=224104989]
+shape = SubResource("BoxShape3D_0xm2m")
+debug_color = Color(5.0880766, 11.497116, 13.328268, 0.41960785)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=2029094749]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4571762, 0.6472354, -0.22759962)
+mesh = SubResource("BoxMesh_h2yge")
+
+[node name="Arena" type="Node3D" parent="." unique_id=850583243]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.65, 0)
 
 [node name="Mur du bas" parent="." unique_id=1760271203 instance=ExtResource("3_1bvp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 1, 9)
@@ -31,3 +52,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
 script = ExtResource("6_7mycd")
 pillar_scene = ExtResource("5_7mycd")
 brick_scene = ExtResource("4_lquwl")
+[node name="Floor" parent="Arena" unique_id=2122610518 instance=ExtResource("2_h2yge")]
+
+[node name="StaticBody3D2" parent="Arena" unique_id=1760271203 instance=ExtResource("3_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 1, 8.5)
+
+[node name="StaticBody3D3" parent="Arena" unique_id=1051022988 instance=ExtResource("3_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 1, -8.5)
+
+[node name="StaticBody3D4" parent="Arena" unique_id=1450692660 instance=ExtResource("3_1bvp3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8.5, 1, 0)
+
+[node name="StaticBody3D5" parent="Arena" unique_id=1026807936 instance=ExtResource("3_1bvp3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8.5, 1, 0)
+
+[node name="Ennemi" parent="." unique_id=1728542207 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="Bomb" parent="." unique_id=646015934 instance=ExtResource("5_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.053961, 1.356245, 0)
