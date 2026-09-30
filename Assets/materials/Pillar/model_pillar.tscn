@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://4353725whtn8"]
+
+[ext_resource type="PackedScene" uid="uid://cpxlvli70o1k6" path="res://Assets/materials/Pillar/p1037_tumbled.glb" id="1_u8ixo"]
+
+[node name="Sketchfab_Scene" unique_id=1598486600 instance=ExtResource("1_u8ixo")]
+
+[node name="Object_2" parent="Sketchfab_model/Scaniverse_obj_cleaner_materialmerger_gles" parent_id_path=PackedInt32Array(1648786082) index="0" unique_id=938785777]
+transform = Transform3D(13, 0, 0, 0, 13, 0, 0, 0, 13, 0, -0.179, -1.625)
