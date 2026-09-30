@@ -2,7 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://cpxlvli70o1k6" path="res://Assets/materials/Pillar/p1037_tumbled.glb" id="1_u8ixo"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_u8ixo"]
+size = Vector3(1.0470581, 1.0126343, 1.0253906)
+
 [node name="Sketchfab_Scene" unique_id=1598486600 instance=ExtResource("1_u8ixo")]
 
-[node name="Object_2" parent="Sketchfab_model/Scaniverse_obj_cleaner_materialmerger_gles" parent_id_path=PackedInt32Array(1648786082) index="0" unique_id=938785777]
+[node name="Object_2" parent="Sketchfab_model/Scaniverse_obj_cleaner_materialmerger_gles" parent_id_path=PackedInt32Array(992097257) index="0" unique_id=526030229]
 transform = Transform3D(13, 0, 0, 0, 13, 0, 0, 0, 13, 0, -0.179, -1.625)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/Scaniverse_obj_cleaner_materialmerger_gles" parent_id_path=PackedInt32Array(992097257) index="1" unique_id=885967239]
+transform = Transform3D(1, 0, 0, 0, 2.220446e-16, -1, 0, 1, 2.220446e-16, -0.22581333, 0.07324219, 0.60268354)
+shape = SubResource("BoxShape3D_u8ixo")

@@ -4,14 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://xx7x46yrad4" path="res://Assets/materials/Bricks/mario_brick_block.glb" id="2_2mpi8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uerxu"]
-size = Vector3(11.186529, 11.361572, 11.197998)
+size = Vector3(12, 11.968262, 12)
 
 [node name="Brick" type="StaticBody3D" unique_id=451105406]
 transform = Transform3D(0.009, 0, 0, 0, 0.009, 0, 0, 0, 0.009, 0, 0, 0)
 script = ExtResource("1_plp72")
 
 [node name="Sketchfab_Scene" parent="." unique_id=1488374834 instance=ExtResource("2_2mpi8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, -15)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=379869161]
-transform = Transform3D(9.999999, 0, 0, 0, 9.999999, 0, 0, 0, 9.999999, -0.53859353, 52.91626, 16.961666)
+transform = Transform3D(9.999997, 0, 0, 0, 9.999997, 0, 0, 0, 9.999997, 0, 8.591308, 0)
 shape = SubResource("BoxShape3D_uerxu")
