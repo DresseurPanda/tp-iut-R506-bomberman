@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://cream54pmflk2" path="res://Ennemis/ennemi.gd" id="1_tewko"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_824qf"]
+radius = 0.5996094
+height = 2.1811523
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tewko"]
 albedo_color = Color(0.51555777, 0.07356972, 0, 1)
@@ -14,7 +16,7 @@ material = SubResource("StandardMaterial3D_tewko")
 script = ExtResource("1_tewko")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=890305195 groups=["ennemi"]]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.014892578, 0)
 shape = SubResource("CapsuleShape3D_824qf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=569999515 groups=["ennemi"]]
