@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dhsx1k650vt50" path="res://Map/Pillar.tscn" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://1p1snrmj3emt" path="res://level_generator.gd" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bnhvrctt0q4vw" path="res://Ennemis/ennemi.tscn" id="4_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://bgk5gkvrq7eeg" path="res://Bombe/bombe.tscn" id="5_1bvp3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ig7tw"]
 

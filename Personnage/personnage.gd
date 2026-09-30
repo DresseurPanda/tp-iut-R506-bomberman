@@ -1,8 +1,9 @@
 extends CharacterBody3D
 
-
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+
+const BOMB_SCENE := preload("res://Bombe/bombe.tscn")
 
 @onready var health = 3
 @onready var ennemis

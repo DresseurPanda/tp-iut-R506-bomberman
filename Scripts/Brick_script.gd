@@ -2,9 +2,9 @@ extends StaticBody3D
 
 @export var destruction_time := 0.3
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_accept"):
-		explode()
+#func _unhandled_input(event: InputEvent) -> void:
+	#if event.is_action_pressed("ui_accept"):
+		#explode()
 
 func explode() -> void:
 	set_collision_layer(0)
