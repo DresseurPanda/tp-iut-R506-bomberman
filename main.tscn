@@ -35,19 +35,17 @@ mesh = SubResource("BoxMesh_h2yge")
 [node name="Arena" type="Node3D" parent="." unique_id=850583243]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.65, 0)
 
-[node name="Floor" parent="Arena" unique_id=2122610518 instance=ExtResource("2_h2yge")]
+[node name="Mur du bas" parent="." unique_id=1760271203 instance=ExtResource("3_1bvp3")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.004, 1.0194974, 9.243443)
 
-[node name="StaticBody3D2" parent="Arena" unique_id=1760271203 instance=ExtResource("3_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 1, 8.5)
+[node name="Mur du haut" parent="." unique_id=1051022988 instance=ExtResource("3_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 1, -9.330208)
 
-[node name="StaticBody3D3" parent="Arena" unique_id=1051022988 instance=ExtResource("3_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004, 1, -8.5)
+[node name="Mur de droite" parent="." unique_id=1450692660 instance=ExtResource("3_1bvp3")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 9.334234, 1, 0)
 
-[node name="StaticBody3D4" parent="Arena" unique_id=1450692660 instance=ExtResource("3_1bvp3")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8.5, 1, 0)
-
-[node name="StaticBody3D5" parent="Arena" unique_id=1026807936 instance=ExtResource("3_1bvp3")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8.5, 1, 0)
+[node name="Mur de gauche" parent="." unique_id=1026807936 instance=ExtResource("3_1bvp3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.284534, 1, 0)
 
 [node name="level_generator" type="Node3D" parent="." unique_id=801460584]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
