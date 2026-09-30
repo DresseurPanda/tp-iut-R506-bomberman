@@ -4,33 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://ciesvyoke4dvj" path="res://Map/base_map.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://d2dppyjnxhgyy" path="res://Map/Wall.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bnhvrctt0q4vw" path="res://Ennemis/ennemi.tscn" id="4_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://bd6ob50i41etu" path="res://Map/Brick.tscn" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://og10k7c0hu3p" path="res://Map/Brick.tscn" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dhsx1k650vt50" path="res://Map/Pillar.tscn" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://1p1snrmj3emt" path="res://level_generator.gd" id="6_7mycd"]
-[ext_resource type="PackedScene" uid="uid://bnhvrctt0q4vw" path="res://Ennemis/ennemi.tscn" id="4_1bvp3"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ig7tw"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
 
 [node name="Node3D" type="Node3D" unique_id=1559146486]
 
 [node name="Personnage" parent="." unique_id=515754185 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1374439993]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07343364, 0, 1.7824214)
-physics_material_override = SubResource("PhysicsMaterial_ig7tw")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=224104989]
-shape = SubResource("BoxShape3D_0xm2m")
-debug_color = Color(5.0880766, 11.497116, 13.328268, 0.41960785)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=2029094749]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4571762, 0.6472354, -0.22759962)
-mesh = SubResource("BoxMesh_h2yge")
 
 [node name="Arena" type="Node3D" parent="." unique_id=850583243]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.65, 0)
@@ -53,3 +34,5 @@ script = ExtResource("6_7mycd")
 pillar_scene = ExtResource("5_7mycd")
 brick_scene = ExtResource("4_lquwl")
 enemy_scene = ExtResource("4_1bvp3")
+
+[node name="Floor" parent="." unique_id=2122610518 instance=ExtResource("2_h2yge")]
