@@ -58,7 +58,7 @@ func spawn_enemies() -> void:
 	for i in range(count):
 		var cell = candidates[i]
 		var enemy = enemy_scene.instantiate()
-		enemy.position = Vector3(cell.x * CELL_SIZE + offset_x, 1, cell.y * CELL_SIZE + offset_z)
+		enemy.position = Vector3(cell.x * CELL_SIZE + offset_x, 0, cell.y * CELL_SIZE + offset_z)
 		add_child(enemy)
 
 func build_level() -> void:

@@ -5,17 +5,17 @@ var compteur=0
 const SPEED = 3.0
 @onready var directionRandom = [Vector3.FORWARD, Vector3.BACK, Vector3.LEFT, Vector3.RIGHT]
 
-func _ready() -> void:
-	placementRandom()
-		
-func placementRandom() -> void:
-	var position_x
-	var position_z
-	position_x= randf_range(-7,7)
-	position_z= randf_range(-8,8)
-	while (position_x >-1 and position_x < 1 and position_z >-1 and position_z < 1):
-		position_x= randf_range(-7,7)
-	global_position=Vector3(position_x,0,position_z)
+#func _ready() -> void:
+	#placementRandom()
+		#
+#func placementRandom() -> void:
+	#var position_x
+	#var position_z
+	#position_x= randf_range(-7,7)
+	#position_z= randf_range(-8,8)
+	#while (position_x >-1 and position_x < 1 and position_z >-1 and position_z < 1):
+		#position_x= randf_range(-7,7)
+	#global_position=Vector3(position_x,0,position_z)
 
 func _physics_process(delta: float) -> void:
 	compteur-=delta
