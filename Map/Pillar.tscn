@@ -46,7 +46,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_c32ut")
 
-[node name="Pillar" type="StaticBody3D" unique_id=846207598]
+[node name="Pillar" type="StaticBody3D" unique_id=846207598 groups=["indestructible"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.176)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1392017647]

@@ -9,7 +9,7 @@ size = Vector3(17.137722, 5.1424255, 0.42993164)
 [sub_resource type="BoxShape3D" id="BoxShape3D_c23k3"]
 size = Vector3(15.977539, 2.0723267, 0.9863281)
 
-[node name="StaticBody3D" type="StaticBody3D" unique_id=1760271203]
+[node name="StaticBody3D" type="StaticBody3D" unique_id=1760271203 groups=["indestructible"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.46301222)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=188313256]
