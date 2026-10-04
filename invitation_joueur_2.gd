@@ -6,11 +6,16 @@ var temps := 0.0
 var a_rejoint := false
 
 func _ready() -> void:
+	# En solo, le joueur 2 n'existe pas : rien a afficher.
+	if not Joueur.deux_joueurs:
+		visible = false
+		set_process(false)
+		return
 	await get_tree().process_frame
 	var joueur2 = get_tree().current_scene.get_node_or_null("Personnage2")
 	if joueur2:
 		joueur2.a_rejoint_partie.connect(_on_joueur2_rejoint)
-	label.text = "Joueur 2 : appuie sur une touche pour rejoindre"
+	label.text = "Joueur 2 arrive..."
 
 func _process(delta: float) -> void:
 	if a_rejoint:

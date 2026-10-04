@@ -12,6 +12,9 @@ const BOMB_SCENE := preload("res://Bombe/bombe.tscn")
 ## Partagé entre tous les joueurs : numéro du gagnant (0 = pas de vainqueur net / égalité).
 static var gagnant_numero: int = 0
 
+## Choisi dans le menu : vrai si la partie se joue a deux (le joueur 2 est alors present des le debut).
+static var deux_joueurs: bool = false
+
 ## 1 = joueur 1 (touches habituelles), 2 = joueur 2 (touches p2_*)
 @export var numero_joueur: int = 1
 ## Couleur distinctive appliquée au mesh pour reconnaître le joueur 2
@@ -60,6 +63,13 @@ func _ready() -> void:
 		mat.albedo_color = couleur_joueur
 		mesh[0].material_override = mat
 
+	# En mode 2 joueurs, le joueur 2 est dans la partie des le debut (pas besoin d'appuyer sur une touche).
+	if numero_joueur == 2 and deux_joueurs:
+		# On attend 2 images pour que le reste de la scene (invitation, split-screen) soit pret.
+		await get_tree().process_frame
+		await get_tree().process_frame
+		rejoindre_partie()
+
 func _kick_bombs() -> void:
 	for i in get_slide_collision_count():
 		var collision := get_slide_collision(i)
@@ -71,16 +81,6 @@ func _kick_bombs() -> void:
 			bomb.kick(-collision.get_normal())
 
 	
-func _process(_delta: float) -> void:
-	# US23 : le joueur 2 rejoint la partie à la première touche pressée
-	if not a_rejoint and numero_joueur == 2:
-		if Input.is_action_just_pressed(action_gauche) \
-		or Input.is_action_just_pressed(action_droite) \
-		or Input.is_action_just_pressed(action_haut) \
-		or Input.is_action_just_pressed(action_bas) \
-		or Input.is_action_just_pressed(action_bombe):
-			rejoindre_partie()
-
 func rejoindre_partie() -> void:
 	a_rejoint = true
 	visible = true
