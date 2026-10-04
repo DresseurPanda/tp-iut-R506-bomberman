@@ -28,11 +28,19 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+	if Input.is_action_just_pressed("poser_bombe"):
+		poser_bombe()
+
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("ennemi"):
 		print("test")
 		take_damage() # Replace with function body.
 
+
+func poser_bombe() -> void:
+	var bomb = BOMB_SCENE.instantiate()
+	get_tree().current_scene.add_child(bomb)
+	bomb.global_position = global_position.round()
 
 func take_damage() -> void:
 	health-=1
