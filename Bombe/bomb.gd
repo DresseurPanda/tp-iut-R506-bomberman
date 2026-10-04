@@ -7,6 +7,10 @@ const CELL_SIZE := 1.0
 const GROUP_DESTRUCTIBLE := "destructible"
 const GROUP_INDESTRUCTIBLE := "indestructible"
 
+## Groupes des personnages touches par l'explosion.
+const GROUP_ENNEMI := "ennemi"
+const GROUP_JOUEUR := "personnage"
+
 ## Les 4 directions de propagation de l'explosion (croix).
 const DIRECTIONS := [Vector3.RIGHT, Vector3.LEFT, Vector3.FORWARD, Vector3.BACK]
 
@@ -63,6 +67,15 @@ func _explode_cell(cell_pos: Vector3) -> bool:
 		brick.remove_from_group(GROUP_DESTRUCTIBLE)
 		brick.explode()
 		return true
+
+	for ennemi in get_tree().get_nodes_in_group(GROUP_ENNEMI):
+		if _is_in_cell(ennemi, cell_pos):
+			ennemi.queue_free()
+
+	for joueur in get_tree().get_nodes_in_group(GROUP_JOUEUR):
+		# Le groupe contient aussi les enfants du personnage : on ne garde que le parent.
+		if joueur is CharacterBody3D and _is_in_cell(joueur, cell_pos):
+			joueur.take_damage()
 
 	print("Explosion sur la case : ", cell_pos)
 	return false
