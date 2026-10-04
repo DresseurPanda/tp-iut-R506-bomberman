@@ -4,6 +4,10 @@ extends Area3D
 ## Taille d'une case de la grille (doit correspondre au pas utilise par le joueur).
 const CELL_SIZE := 1.0
 
+## Scene du bonus et chance qu'une brique detruite en laisse un.
+const BONUS_SCENE := preload("res://Bonus/bonus.tscn")
+const BONUS_DROP_CHANCE := 0.1
+
 ## Groupes des murs (definis sur les scenes Brick, Pillar et Wall).
 const GROUP_DESTRUCTIBLE := "destructible"
 const GROUP_INDESTRUCTIBLE := "indestructible"
@@ -115,6 +119,7 @@ func _explode_cell(cell_pos: Vector3) -> bool:
 	if brick:
 		brick.remove_from_group(GROUP_DESTRUCTIBLE)
 		brick.explode()
+		_maybe_drop_bonus(brick.global_position)
 		return true
 
 	for ennemi in get_tree().get_nodes_in_group(GROUP_ENNEMI):
@@ -128,6 +133,18 @@ func _explode_cell(cell_pos: Vector3) -> bool:
 
 	print("Explosion sur la case : ", cell_pos)
 	return false
+
+
+## Fait apparaitre un bonus aleatoire a la place de la brique detruite.
+func _maybe_drop_bonus(pos: Vector3) -> void:
+	if randf() >= BONUS_DROP_CHANCE:
+		return
+	# Pas de type "Bonus" ici : bonus.gd utilise deja Bomb, ca ferait une dependance circulaire.
+	var bonus = BONUS_SCENE.instantiate()
+	bonus.randomize_type()
+	get_tree().current_scene.add_child(bonus)
+	# Le bonus est pose juste au-dessus du sol (sol a y = 0.5).
+	bonus.global_position = Vector3(pos.x, 0.8, pos.z)
 
 
 ## Retourne le premier noeud du groupe qui se trouve dans la case, ou null.
