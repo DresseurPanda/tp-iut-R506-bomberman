@@ -38,6 +38,15 @@ static var range_multiplier: float = 1.0
 ## Personnages qui etaient sur la case a la pose : ils peuvent en sortir librement.
 var _passing_bodies: Array[CharacterBody3D] = []
 
+## Direction de glissement quand la bombe est poussee (ZERO = elle est immobile).
+var _kick_direction := Vector3.ZERO
+
+## Centre de la prochaine case vers laquelle la bombe glisse.
+var _kick_target := Vector3.ZERO
+
+## Vrai des que la bombe a explose (evite une 2e explosion pendant que le son se termine).
+var _exploded := false
+
 
 func _ready() -> void:
 	timer.start()
@@ -69,6 +78,47 @@ func _activate_solid() -> void:
 	solid.collision_layer = 1
 
 
+## Pousse la bombe d'un coup de pied : elle glisse en ligne droite, case par case,
+## puis explose des qu'un obstacle se trouve devant elle.
+func kick(direction: Vector3) -> void:
+	if _exploded or _kick_direction != Vector3.ZERO:
+		return
+	var axis := _snap_to_axis(direction)
+	# Pas de coup de pied si la case d'a cote est deja bloquee.
+	if _is_blocked(axis):
+		return
+	_kick_direction = axis
+	_kick_target = global_position + axis * CELL_SIZE
+
+
+func _physics_process(delta: float) -> void:
+	if _kick_direction == Vector3.ZERO:
+		return
+	global_position = global_position.move_toward(_kick_target, KICK_SPEED * delta)
+	if not global_position.is_equal_approx(_kick_target):
+		return
+	# Arrivee au centre d'une case : on continue ou on explose si un obstacle est devant.
+	if _is_blocked(_kick_direction):
+		_on_timeout()
+	else:
+		_kick_target += _kick_direction * CELL_SIZE
+
+
+## Ramene une direction quelconque sur l'axe X ou Z le plus proche.
+func _snap_to_axis(direction: Vector3) -> Vector3:
+	if absf(direction.x) > absf(direction.z):
+		return Vector3(signf(direction.x), 0, 0)
+	return Vector3(0, 0, signf(direction.z))
+
+
+## Retourne true si quelque chose de solide se trouve dans la case voisine (rayon vers elle).
+func _is_blocked(direction: Vector3) -> bool:
+	var from := global_position
+	var query := PhysicsRayQueryParameters3D.create(
+		from, from + direction * CELL_SIZE * 0.95, 0xFFFFFFFF, [solid.get_rid()])
+	return not get_world_3d().direct_space_state.intersect_ray(query).is_empty()
+
+
 func _on_body_exited(body: Node3D) -> void:
 	if body in _passing_bodies:
 		body.remove_collision_exception_with(solid)
@@ -86,6 +136,12 @@ func get_effective_range() -> int:
 
 
 func _on_timeout() -> void:
+	if _exploded:
+		return
+	_exploded = true
+	# Si la bombe glissait, on la recale au centre d'une case avant d'exploser.
+	_kick_direction = Vector3.ZERO
+	global_position = global_position.round()
 	explode()
 	visible=false
 	get_node("Solid/FormeBlocage").disabled=true
