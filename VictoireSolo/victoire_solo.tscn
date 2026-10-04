@@ -41,6 +41,7 @@ text = "Rejouer ?"
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2014394122]
 position = Vector2(468, 460)
 stream = ExtResource("2_vmvtg")
+autoplay = true
 
 [connection signal="pressed" from="Quitter" to="." method="_on_quitter_pressed"]
 [connection signal="pressed" from="Rejouer" to="." method="_on_button_rejouer"]
