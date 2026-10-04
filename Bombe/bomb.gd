@@ -23,10 +23,43 @@ static var range_multiplier: float = 1.0
 
 @onready var timer: Timer = $Timer
 
+## Partie solide de la bombe : elle bloque le joueur et les ennemis une fois activee.
+@onready var solid: StaticBody3D = $Solid
+
+## Personnages qui etaient sur la case a la pose : ils peuvent en sortir librement.
+var _passing_bodies: Array[CharacterBody3D] = []
+
 
 func _ready() -> void:
 	timer.start()
 	timer.timeout.connect(_on_timeout)
+	body_exited.connect(_on_body_exited)
+	_activate_solid()
+
+
+## Rend la bombe solide, sauf pour ceux qui se trouvent deja sur sa case :
+## ils la traversent jusqu'a ce qu'ils en sortent (sinon ils seraient coinces).
+func _activate_solid() -> void:
+	# Il faut attendre que la physique ait detecte les corps qui chevauchent la bombe.
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	for body in get_overlapping_bodies():
+		if body is CharacterBody3D and _is_in_cell(body, global_position):
+			body.add_collision_exception_with(solid)
+			_passing_bodies.append(body)
+	solid.collision_layer = 1
+
+
+func _on_body_exited(body: Node3D) -> void:
+	if body in _passing_bodies:
+		body.remove_collision_exception_with(solid)
+		_passing_bodies.erase(body)
+
+
+func _exit_tree() -> void:
+	for body in _passing_bodies:
+		if is_instance_valid(body):
+			body.remove_collision_exception_with(solid)
 
 
 func get_effective_range() -> int:

@@ -5,16 +5,26 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i857s"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_solid"]
+size = Vector3(0.9, 1, 0.9)
+
 [node name="Bomb" type="Area3D" unique_id=646015934]
 script = ExtResource("1_ux0ho")
 
 [node name="BombModel" parent="." unique_id=1443409243 instance=ExtResource("2_kjfnb")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=49400015]
+[node name="FormeDetection" type="CollisionShape3D" parent="." unique_id=49400015]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 rotation_order = 3
 shape = SubResource("SphereShape3D_i857s")
 
 [node name="Timer" type="Timer" parent="." unique_id=1073649688]
 wait_time = 2.0
+
+[node name="Solid" type="StaticBody3D" parent="."]
+collision_layer = 0
+
+[node name="FormeBlocage" type="CollisionShape3D" parent="Solid"]
+shape = SubResource("BoxShape3D_solid")
+
