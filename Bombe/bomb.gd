@@ -11,6 +11,9 @@ const GROUP_INDESTRUCTIBLE := "indestructible"
 const GROUP_ENNEMI := "ennemi"
 const GROUP_JOUEUR := "personnage"
 
+## Effet d'explosion d'une case : flamme + particules (scene editable dans l'editeur).
+const EXPLOSION_SCENE := preload("res://Bombe/explosion.tscn")
+
 ## Les 4 directions de propagation de l'explosion (croix).
 const DIRECTIONS := [Vector3.RIGHT, Vector3.LEFT, Vector3.FORWARD, Vector3.BACK]
 
@@ -35,6 +38,16 @@ func _ready() -> void:
 	timer.timeout.connect(_on_timeout)
 	body_exited.connect(_on_body_exited)
 	_activate_solid()
+
+
+## Fait apparaitre l'effet d'explosion sur une case (il se supprime tout seul).
+## Il est ajoute a la scene car la bombe est supprimee juste apres.
+func _spawn_explosion_effect(cell_pos: Vector3) -> void:
+	var effect: Node3D = EXPLOSION_SCENE.instantiate()
+	# top_level + position AVANT add_child : sinon les particules demarrent a l'origine de la carte.
+	effect.top_level = true
+	effect.position = cell_pos
+	get_tree().current_scene.add_child(effect)
 
 
 ## Rend la bombe solide, sauf pour ceux qui se trouvent deja sur sa case :
@@ -93,6 +106,8 @@ func _explode_cell(cell_pos: Vector3) -> bool:
 	# Un mur indestructible arrete l'explosion sans etre touche.
 	if _node_in_cell(GROUP_INDESTRUCTIBLE, cell_pos):
 		return true
+
+	_spawn_explosion_effect(cell_pos)
 
 	# Une brique est detruite et arrete aussi l'explosion.
 	var brick := _node_in_cell(GROUP_DESTRUCTIBLE, cell_pos)
