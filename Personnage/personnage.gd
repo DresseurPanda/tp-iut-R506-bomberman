@@ -59,10 +59,6 @@ func _ready() -> void:
 		var mat := StandardMaterial3D.new()
 		mat.albedo_color = couleur_joueur
 		mesh[0].material_override = mat
-	
-
-	if Input.is_action_just_pressed("poser_bombe"):
-		poser_bombe()
 
 func _kick_bombs() -> void:
 	for i in get_slide_collision_count():
