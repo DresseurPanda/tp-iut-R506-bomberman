@@ -4,7 +4,7 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 const BOMB_SCENE := preload("res://Bombe/bombe.tscn")
-const HUD := preload("res://Bonus/hud.gd")
+const HUD_SCENE := preload("res://HUD/hud.tscn")
 
 ## Nombre de bombes que ce joueur peut avoir posees en meme temps.
 ## Un bonus n'a qu'a faire "max_bombs += 1" pour l'augmenter.
@@ -22,7 +22,7 @@ var spawn_position := Vector3(0, 0.5, 0)
 func _ready() -> void:
 	# La portee est statique : on la remet a 1 a chaque nouvelle partie.
 	Bomb.range_multiplier = 1.0
-	add_child(HUD.new())
+	add_child(HUD_SCENE.instantiate())
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
