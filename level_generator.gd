@@ -6,6 +6,10 @@ const HEIGHT := 17
 const PLAYER_SPAWN := Vector2i(1, 1)
 const SAFE_RADIUS := 5
 
+# Decalage de chaque modele pour que sa base soit sur le sol et sa collision centree sur la case.
+const PILLAR_OFFSET := Vector3(0, 0.026, -0.178)
+const BRICK_OFFSET := Vector3(0, 0.45, 0)
+
 @export var pillar_scene: PackedScene
 @export var brick_scene: PackedScene
 @export var enemy_scene: PackedScene
@@ -73,11 +77,11 @@ func build_level() -> void:
 
 			if cell == 3 and pillar_scene:
 				var pillar = pillar_scene.instantiate()
-				pillar.position = world_pos + Vector3(0, CELL_SIZE / 2.0, 0)
+				pillar.position = world_pos + Vector3(0, CELL_SIZE / 2.0, 0) + PILLAR_OFFSET
 				add_child(pillar)
 			elif cell == 2 and brick_scene:
 				var brick = brick_scene.instantiate()
-				brick.position = world_pos + Vector3(0, CELL_SIZE / 2.0, 0)
+				brick.position = world_pos + Vector3(0, CELL_SIZE / 2.0, 0) + BRICK_OFFSET
 				add_child(brick)
 
 	spawn_enemies()
