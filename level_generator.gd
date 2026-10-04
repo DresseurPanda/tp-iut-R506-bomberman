@@ -86,6 +86,17 @@ func get_cell_center(cell: Vector2i) -> Vector3:
 	var z := (cell.y + 0.5 - HEIGHT / 2.0) * CELL_SIZE
 	return Vector3(x, 0, z)
 
+## Deplace le joueur au centre de la case de depart (PLAYER_SPAWN), qui est
+## toujours libre. Le joueur est cherche dans la scene parente (main.tscn).
+func place_player() -> void:
+	var player = get_parent().get_node_or_null("Personnage")
+	if player:
+		var spawn_pos := to_global(get_cell_center(PLAYER_SPAWN))
+		# On garde la hauteur actuelle du joueur : seule la case change.
+		player.global_position = Vector3(spawn_pos.x, player.global_position.y, spawn_pos.z)
+		# Le joueur reapparait ici apres avoir perdu une vie.
+		player.spawn_position = player.global_position
+
 func build_level() -> void:
 	generate_grid()
 	var offset_x = -(WIDTH * CELL_SIZE) / 2.0 + CELL_SIZE / 2.0
@@ -105,6 +116,7 @@ func build_level() -> void:
 				brick.position = world_pos + Vector3(0, CELL_SIZE / 2.0, 0) + BRICK_OFFSET
 				add_child(brick)
 
+	place_player()
 	spawn_enemies()
 
 func _ready() -> void:
