@@ -12,7 +12,8 @@ func explode() -> void:
 
 	var tween = create_tween()
 	tween.set_parallel(true)
-	tween.tween_property(self, "scale", Vector3.ZERO, destruction_time)\
+	# Pas exactement zero : Jolt refuse un corps physique a l'echelle nulle.
+	tween.tween_property(self, "scale", scale * 0.01, destruction_time)\
 		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	tween.tween_property(self, "position:y", position.y - 0.5, destruction_time)
 
