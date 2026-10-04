@@ -12,6 +12,9 @@ const BOMB_SCENE := preload("res://Bombe/bombe.tscn")
 ## Positions (alignees sur la grille) des bombes actuellement posees par ce joueur.
 var active_bomb_positions: Array[Vector3] = []
 
+## Position de depart du joueur, definie par le level_generator. Sert au respawn.
+var spawn_position := Vector3(0, 0.5, 0)
+
 @onready var health = 3
 @onready var ennemis
 
@@ -67,7 +70,7 @@ func take_damage() -> void:
 	if health == 0:
 		mort()
 		return
-	global_position= Vector3(0,0.5,0)
+	global_position = spawn_position
 
 func mort() -> void:
 	# Differe : la bombe qui nous a tue est encore en train d'exploser.
