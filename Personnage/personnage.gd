@@ -5,6 +5,13 @@ const JUMP_VELOCITY = 4.5
 
 const BOMB_SCENE := preload("res://Bombe/bombe.tscn")
 
+## Nombre de bombes que ce joueur peut avoir posees en meme temps.
+## Un bonus n'a qu'a faire "max_bombs += 1" pour l'augmenter.
+@export var max_bombs: int = 1
+
+## Positions (alignees sur la grille) des bombes actuellement posees par ce joueur.
+var active_bomb_positions: Array[Vector3] = []
+
 @onready var health = 3
 @onready var ennemis
 
@@ -36,11 +43,23 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		print("test")
 		take_damage() # Replace with function body.
 
-
 func poser_bombe() -> void:
+	# On ne peut pas depasser son nombre de bombes autorise en simultane.
+	if active_bomb_positions.size() >= max_bombs:
+		return
+
+	var target_pos := global_position.round()
+
+	# On ne peut pas reposer une bombe sur une case deja occupee par une bombe.
+	if target_pos in active_bomb_positions:
+		return
+
 	var bomb = BOMB_SCENE.instantiate()
 	get_tree().current_scene.add_child(bomb)
-	bomb.global_position = global_position.round()
+	bomb.global_position = target_pos
+
+	active_bomb_positions.append(target_pos)
+	bomb.tree_exited.connect(func(): active_bomb_positions.erase(target_pos))
 
 func take_damage() -> void:
 	health-=1
@@ -54,4 +73,3 @@ func mort() -> void:
 	# Differe : la bombe qui nous a tue est encore en train d'exploser.
 	get_tree().change_scene_to_file.call_deferred("res://GameOver/game_over.tscn")
 	print("Tu es mort :(")
-	
