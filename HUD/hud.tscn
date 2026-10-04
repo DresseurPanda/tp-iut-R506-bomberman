@@ -1,34 +1,37 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://dxb472pot568o"]
 
-[ext_resource type="Script" path="res://HUD/hud.gd" id="1_hud"]
+[ext_resource type="Script" uid="uid://bwawotj7mmmyu" path="res://HUD/hud.gd" id="1_hud"]
 
-[node name="HUD" type="CanvasLayer"]
+[node name="HUD" type="Control" unique_id=2114139100]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_hud")
 
-[node name="Marge" type="MarginContainer" parent="."]
+[node name="Marge" type="MarginContainer" parent="." unique_id=1308962618]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 
-[node name="Infos" type="VBoxContainer" parent="Marge"]
+[node name="Infos" type="VBoxContainer" parent="Marge" unique_id=1705415393]
 layout_mode = 2
 
-[node name="Vies" type="Label" parent="Marge/Infos"]
+[node name="Vies" type="Label" parent="Marge/Infos" unique_id=51443287]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 28
 text = "Vies : 3"
 
-[node name="Bombes" type="Label" parent="Marge/Infos"]
+[node name="Bombes" type="Label" parent="Marge/Infos" unique_id=567858911]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 28
 text = "Bombes : 1"
 
-[node name="Portee" type="Label" parent="Marge/Infos"]
+[node name="Portee" type="Label" parent="Marge/Infos" unique_id=1908249856]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8

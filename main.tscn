@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://r5c43yam8pug"]
 
+[ext_resource type="Script" uid="uid://blfio4po5hwxv" path="res://main.gd" id="1_5vw27"]
 [ext_resource type="PackedScene" uid="uid://8qye64eqt22y" path="res://Personnage/Personnage.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://ciesvyoke4dvj" path="res://Map/base_map.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://d2dppyjnxhgyy" path="res://Map/Wall.tscn" id="3_1bvp3"]
@@ -7,11 +8,18 @@
 [ext_resource type="PackedScene" uid="uid://og10k7c0hu3p" path="res://Map/Brick.tscn" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dhsx1k650vt50" path="res://Map/Pillar.tscn" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://1p1snrmj3emt" path="res://level_generator.gd" id="6_7mycd"]
+[ext_resource type="Script" uid="uid://cbjb7s53al8jn" path="res://invitation_joueur_2.gd" id="9_kek77"]
 
 [node name="Node3D" type="Node3D" unique_id=1559146486]
+script = ExtResource("1_5vw27")
 
 [node name="Personnage" parent="." unique_id=515754185 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
+
+[node name="Personnage2" parent="." unique_id=530774991 instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004629135, 0.08, 0)
+numero_joueur = 2
+couleur_joueur = Color(0, 0, 0, 1)
 
 [node name="Arena" type="Node3D" parent="." unique_id=850583243]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.65, 0)
@@ -36,3 +44,52 @@ brick_scene = ExtResource("4_lquwl")
 enemy_scene = ExtResource("4_1bvp3")
 
 [node name="Floor" parent="." unique_id=2122610518 instance=ExtResource("2_h2yge")]
+
+[node name="InvitationJoueur2" type="CanvasLayer" parent="." unique_id=277083022]
+script = ExtResource("9_kek77")
+
+[node name="Label" type="Label" parent="InvitationJoueur2" unique_id=715521296]
+anchors_preset = -1
+anchor_right = 0.99700004
+anchor_bottom = 1.0
+offset_right = 0.45593262
+offset_bottom = 8.0
+text = "Joueur 2 a rejoint la partie
+"
+
+[node name="SplitScreenUI" type="CanvasLayer" parent="." unique_id=1547196439]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SplitScreenUI" unique_id=122095897]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="SplitScreenUI/HBoxContainer" unique_id=1450343755]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SplitScreenUI/HBoxContainer/SubViewportContainer" unique_id=1225367494]
+handle_input_locally = false
+size = Vector2i(574, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SplitScreenUI/HBoxContainer/SubViewportContainer/SubViewport" unique_id=1017840607]
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="SplitScreenUI/HBoxContainer" unique_id=141177554]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SplitScreenUI/HBoxContainer/SubViewportContainer2" unique_id=468492891]
+handle_input_locally = false
+size = Vector2i(574, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SplitScreenUI/HBoxContainer/SubViewportContainer2/SubViewport" unique_id=892588461]
