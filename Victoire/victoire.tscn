@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b0victoire001"]
 
 [ext_resource type="Script" uid="uid://csskb5neij6d4" path="res://Victoire/victoire.gd" id="1_vct01"]
+[ext_resource type="AudioStream" uid="uid://dgb6jikt85jmt" path="res://Sound/victoire.mp3" id="2_b86qk"]
 
 [node name="Victoire" type="Control" unique_id=1691140370]
 layout_mode = 3
@@ -37,6 +38,10 @@ text = "Rejouer"
 [node name="Quitter" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1306753800]
 layout_mode = 2
 text = "Quitter"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2015987647]
+stream = ExtResource("2_b86qk")
+autoplay = true
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Rejouer" to="." method="_on_rejouer_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Quitter" to="." method="_on_quitter_pressed"]

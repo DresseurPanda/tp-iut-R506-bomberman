@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dxrd636bgx76a" path="res://Bombe/bomb.gd" id="1_ux0ho"]
 [ext_resource type="PackedScene" uid="uid://frme45o1cjwv" path="res://Bombe/free_asset__pirate_bomb.glb" id="2_kjfnb"]
+[ext_resource type="AudioStream" uid="uid://dv4efhtrjg6m8" path="res://Sound/explosion.mp3" id="3_005gn"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i857s"]
 
@@ -58,3 +59,6 @@ shape = SubResource("BoxShape3D_solid")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1736331720]
 libraries/ = SubResource("AnimationLibrary_bombe")
 autoplay = &"clignote"
+
+[node name="explosion" type="AudioStreamPlayer3D" parent="." unique_id=671932811]
+stream = ExtResource("3_005gn")

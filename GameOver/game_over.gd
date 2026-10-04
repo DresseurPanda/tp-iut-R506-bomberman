@@ -1,15 +1,20 @@
 extends ColorRect
 
+@onready var sfx_defaite = get_node("son_defaite")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	sfx_defaite.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
 func _on_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://main.tscn")
+
+
+func _on_quitter_pressed() -> void:
+	get_tree().quit()

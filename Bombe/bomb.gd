@@ -3,7 +3,7 @@ extends Area3D
 
 ## Taille d'une case de la grille (doit correspondre au pas utilise par le joueur).
 const CELL_SIZE := 1.0
-
+@onready var sfx_explosion = get_node("explosion")
 ## Scene du bonus et chance qu'une brique detruite en laisse un.
 const BONUS_SCENE := preload("res://Bonus/bonus.tscn")
 const BONUS_DROP_CHANCE := 0.1
@@ -18,6 +18,7 @@ const GROUP_JOUEUR := "personnage"
 
 ## Effet d'explosion d'une case : flamme + particules (scene editable dans l'editeur).
 const EXPLOSION_SCENE := preload("res://Bombe/explosion.tscn")
+const KICK_SPEED := 6.0
 
 ## Les 4 directions de propagation de l'explosion (croix).
 const DIRECTIONS := [Vector3.RIGHT, Vector3.LEFT, Vector3.FORWARD, Vector3.BACK]
@@ -86,6 +87,10 @@ func get_effective_range() -> int:
 
 func _on_timeout() -> void:
 	explode()
+	visible=false
+	get_node("Solid/FormeBlocage").disabled=true
+	sfx_explosion.play()
+	await $explosion.finished
 	queue_free()
 
 
@@ -111,8 +116,9 @@ func _explode_cell(cell_pos: Vector3) -> bool:
 	# Un mur indestructible arrete l'explosion sans etre touche.
 	if _node_in_cell(GROUP_INDESTRUCTIBLE, cell_pos):
 		return true
-
+	
 	_spawn_explosion_effect(cell_pos)
+	
 
 	# Une brique est detruite et arrete aussi l'explosion.
 	var brick := _node_in_cell(GROUP_DESTRUCTIBLE, cell_pos)
@@ -124,9 +130,7 @@ func _explode_cell(cell_pos: Vector3) -> bool:
 
 	for ennemi in get_tree().get_nodes_in_group(GROUP_ENNEMI):
 		if _is_in_cell(ennemi, cell_pos):
-			ennemi.queue_free()
-			call_deferred("verifier_victoire")
-			
+			ennemi.mourir()
 
 	for joueur in get_tree().get_nodes_in_group(GROUP_JOUEUR):
 		# Le groupe contient aussi les enfants du personnage : on ne garde que le parent.
@@ -136,9 +140,7 @@ func _explode_cell(cell_pos: Vector3) -> bool:
 	print("Explosion sur la case : ", cell_pos)
 	return false
 	
-func verifier_victoire() -> void:
-	if get_tree().get_nodes_in_group("ennemi").size()==1:
-		get_tree().change_scene_to_file("res://VictoireSolo/victoire_solo.tscn")
+
 
 ## Fait apparaitre un bonus aleatoire a la place de la brique detruite.
 func _maybe_drop_bonus(pos: Vector3) -> void:

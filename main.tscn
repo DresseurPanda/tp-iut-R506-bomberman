@@ -9,17 +9,19 @@
 [ext_resource type="PackedScene" uid="uid://dhsx1k650vt50" path="res://Map/Pillar.tscn" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://1p1snrmj3emt" path="res://level_generator.gd" id="6_7mycd"]
 [ext_resource type="Script" uid="uid://cbjb7s53al8jn" path="res://invitation_joueur_2.gd" id="9_kek77"]
+[ext_resource type="AudioStream" uid="uid://d0bq7a5kg7emh" path="res://Sound/musique_bomberman_tyran.mp3" id="10_4c57u"]
 
 [node name="Node3D" type="Node3D" unique_id=1559146486]
 script = ExtResource("1_5vw27")
 
 [node name="Personnage" parent="." unique_id=515754185 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
+couleur_joueur = Color(0.7910139, 0.12823913, 7.70092e-07, 1)
 
 [node name="Personnage2" parent="." unique_id=530774991 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.004629135, 0.08, 0)
 numero_joueur = 2
-couleur_joueur = Color(0, 0, 0, 1)
+couleur_joueur = Color(0.11716389, 0.3427767, 0.97296184, 1)
 
 [node name="Arena" type="Node3D" parent="." unique_id=850583243]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.65, 0)
@@ -93,3 +95,7 @@ size = Vector2i(574, 648)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="SplitScreenUI/HBoxContainer/SubViewportContainer2/SubViewport" unique_id=892588461]
+
+[node name="musique" type="AudioStreamPlayer2D" parent="." unique_id=208242628]
+stream = ExtResource("10_4c57u")
+volume_db = -18.0

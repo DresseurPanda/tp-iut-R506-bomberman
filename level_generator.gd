@@ -17,7 +17,7 @@ const BRICK_OFFSET := Vector3(0, 0.45, 0)
 @export var brick_scene: PackedScene
 @export var enemy_scene: PackedScene
 @export var brick_chance := 0.55
-@export var enemy_count := 1
+@export var enemy_count := 4
 
 var grid := []
 

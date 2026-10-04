@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cream54pmflk2" path="res://Ennemis/ennemi.gd" id="1_tewko"]
 [ext_resource type="PackedScene" uid="uid://fmv31qloufvm" path="res://Ennemis/modele/monstre_sans_socle.glb" id="2_dp5oi"]
+[ext_resource type="AudioStream" uid="uid://bl41rwfv1c2y7" path="res://Sound/tyran_mort.mp3" id="3_r0478"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dp5oi"]
 size = Vector3(3.4819489, 6.1367188, 2.8968353)
@@ -15,3 +16,8 @@ shape = SubResource("BoxShape3D_dp5oi")
 
 [node name="Sketchfab_Scene" parent="." unique_id=1421797750 instance=ExtResource("2_dp5oi")]
 transform = Transform3D(-0.1, -1.5180807e-09, -8.6094625e-09, 0, 0.098480776, -0.017364819, 8.742278e-09, -0.017364819, -0.098480776, 0, 0, 0)
+
+[node name="son_mort" type="AudioStreamPlayer3D" parent="." unique_id=1327727047]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03274834, 0.65169007, -0.046473145)
+stream = ExtResource("3_r0478")
+volume_db = -19.845

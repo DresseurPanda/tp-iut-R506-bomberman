@@ -8,11 +8,13 @@ const HUD_SCENE := preload("res://HUD/hud.tscn")
 @onready var cam_p2: Camera3D = $SplitScreenUI/HBoxContainer/SubViewportContainer2/SubViewport/Camera3D
 @onready var hud_container_p1 := $SplitScreenUI/HBoxContainer/SubViewportContainer
 @onready var hud_container_p2 := $SplitScreenUI/HBoxContainer/SubViewportContainer2
+@onready var musique = get_node("musique")
 
 func _ready() -> void:
 	$SplitScreenUI.visible = false
 	viewport_p1.world_3d = get_viewport().world_3d
 	viewport_p2.world_3d = get_viewport().world_3d
+	musique.play()
 
 func _process(_delta: float) -> void:
 	if $SplitScreenUI.visible:

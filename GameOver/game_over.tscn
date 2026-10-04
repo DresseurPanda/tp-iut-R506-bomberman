@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bk1ok3iccp4f4"]
 
 [ext_resource type="Script" uid="uid://b5lwydm7xphxi" path="res://GameOver/game_over.gd" id="1_w45li"]
+[ext_resource type="AudioStream" uid="uid://m1st7vqebq4j" path="res://Sound/défaite.mp3" id="2_dyh6w"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c6a5o"]
 font_size = 100
@@ -40,4 +41,8 @@ offset_right = 610.0
 offset_bottom = 578.0
 text = "Quitter ?"
 
+[node name="son_defaite" type="AudioStreamPlayer2D" parent="." unique_id=1107130456]
+stream = ExtResource("2_dyh6w")
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_quitter_pressed"]

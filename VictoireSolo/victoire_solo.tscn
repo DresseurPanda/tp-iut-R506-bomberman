@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d1lwtrprmx7f"]
 
 [ext_resource type="Script" uid="uid://d37sjjhr3v0md" path="res://VictoireSolo/victoire_solo.gd" id="1_iqgjf"]
+[ext_resource type="AudioStream" uid="uid://dgb6jikt85jmt" path="res://Sound/victoire.mp3" id="2_vmvtg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3d22t"]
 font_size = 100
@@ -36,6 +37,10 @@ offset_right = 668.0
 offset_bottom = 399.0
 theme_override_font_sizes/font_size = 40
 text = "Rejouer ?"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2014394122]
+position = Vector2(468, 460)
+stream = ExtResource("2_vmvtg")
 
 [connection signal="pressed" from="Quitter" to="." method="_on_quitter_pressed"]
 [connection signal="pressed" from="Rejouer" to="." method="_on_button_rejouer"]
