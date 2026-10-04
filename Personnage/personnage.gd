@@ -37,11 +37,13 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 func take_damage() -> void:
 	health-=1
 	print("Une vie en moins :(")
-	if health ==0:
+	if health == 0:
 		mort()
+		return
 	global_position= Vector3(0,0.5,0)
 
 func mort() -> void:
-	get_tree().change_scene_to_file("res://GameOver/game_over.tscn")
+	# Differe : la bombe qui nous a tue est encore en train d'exploser.
+	get_tree().change_scene_to_file.call_deferred("res://GameOver/game_over.tscn")
 	print("Tu es mort :(")
 	
