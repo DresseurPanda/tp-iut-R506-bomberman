@@ -3,6 +3,10 @@ extends Area3D
 ## Taille d'une case de la grille (doit correspondre au pas utilise par le joueur).
 const CELL_SIZE := 1.0
 
+## Groupes des murs (definis sur les scenes Brick, Pillar et Wall).
+const GROUP_DESTRUCTIBLE := "destructible"
+const GROUP_INDESTRUCTIBLE := "indestructible"
+
 ## Les 4 directions de propagation de l'explosion (croix).
 const DIRECTIONS := [Vector3.RIGHT, Vector3.LEFT, Vector3.FORWARD, Vector3.BACK]
 
@@ -49,8 +53,31 @@ func explode() -> void:
 ## Traite l'explosion d'une case donnee.
 ## Retourne true si l'explosion doit s'arreter dans cette direction (mur rencontre).
 func _explode_cell(cell_pos: Vector3) -> bool:
-	# TODO (US08/US09) : verifier ici si un mur indestructible bloque la case
-	# (retourner true sans effet), ou si un mur destructible doit etre detruit
-	# (le detruire puis retourner true).
+	# Un mur indestructible arrete l'explosion sans etre touche.
+	if _node_in_cell(GROUP_INDESTRUCTIBLE, cell_pos):
+		return true
+
+	# Une brique est detruite et arrete aussi l'explosion.
+	var brick := _node_in_cell(GROUP_DESTRUCTIBLE, cell_pos)
+	if brick:
+		brick.remove_from_group(GROUP_DESTRUCTIBLE)
+		brick.explode()
+		return true
+
 	print("Explosion sur la case : ", cell_pos)
 	return false
+
+
+## Retourne le premier noeud du groupe qui se trouve dans la case, ou null.
+func _node_in_cell(group: String, cell_pos: Vector3) -> Node3D:
+	for node in get_tree().get_nodes_in_group(group):
+		if _is_in_cell(node, cell_pos):
+			return node
+	return null
+
+
+## Retourne true si le noeud se trouve dans la case centree sur cell_pos.
+func _is_in_cell(node: Node3D, cell_pos: Vector3) -> bool:
+	var half := CELL_SIZE / 2.0
+	return abs(node.global_position.x - cell_pos.x) <= half \
+		and abs(node.global_position.z - cell_pos.z) <= half
