@@ -5,6 +5,8 @@ const WIDTH := 17
 const HEIGHT := 17
 const PLAYER_SPAWN := Vector2i(1, 1)
 const SAFE_RADIUS := 5
+## Distance minimale (en cases) entre deux ennemis au depart.
+const ENEMY_MIN_DISTANCE := 4
 
 # Decalage de chaque modele pour que sa base soit sur le sol et sa collision centree sur la case.
 const PILLAR_OFFSET := Vector3(0, 0.026, -0.178)
@@ -40,6 +42,10 @@ func generate_grid() -> void:
 				row.append(2 if randf() < brick_chance else 0)
 		grid.append(row)
 
+	# Zone de depart du joueur toujours libre (la case et ses voisines).
+	for cell in [PLAYER_SPAWN, PLAYER_SPAWN + Vector2i.RIGHT, PLAYER_SPAWN + Vector2i.DOWN]:
+		grid[cell.y][cell.x] = 0
+
 func get_walkable_cells_far_from_player() -> Array[Vector2i]:
 	var candidates: Array[Vector2i] = []
 	for y in range(HEIGHT):
@@ -51,19 +57,34 @@ func get_walkable_cells_far_from_player() -> Array[Vector2i]:
 				candidates.append(Vector2i(x, y))
 	return candidates
 
+## Place les ennemis sur des cases vides, loin du joueur et loin les uns des autres.
 func spawn_enemies() -> void:
 	if not enemy_scene:
 		return
 	var candidates = get_walkable_cells_far_from_player()
 	candidates.shuffle()
-	var count = min(enemy_count, candidates.size())
-	var offset_x = -(WIDTH * CELL_SIZE) / 2.0
-	var offset_z = -(HEIGHT * CELL_SIZE) / 2.0
-	for i in range(count):
-		var cell = candidates[i]
+
+	var chosen: Array[Vector2i] = []
+	for cell in candidates:
+		if chosen.size() >= enemy_count:
+			break
+		# On saute la case si un ennemi deja choisi est trop proche.
+		var too_close := chosen.any(func(other): return Vector2(cell).distance_to(Vector2(other)) < ENEMY_MIN_DISTANCE)
+		if not too_close:
+			chosen.append(cell)
+
+	for cell in chosen:
 		var enemy = enemy_scene.instantiate()
-		enemy.position = Vector3(cell.x * CELL_SIZE + offset_x, 0, cell.y * CELL_SIZE + offset_z)
+		enemy.position = get_cell_center(cell)
 		add_child(enemy)
+
+## Retourne la position 3D (locale au generateur) du centre d'une case de la grille.
+## La grille est centree sur le generateur : la case (0, 0) est en haut a gauche.
+## Le "+ 0.5" place le point au milieu de la case et non sur son coin.
+func get_cell_center(cell: Vector2i) -> Vector3:
+	var x := (cell.x + 0.5 - WIDTH / 2.0) * CELL_SIZE
+	var z := (cell.y + 0.5 - HEIGHT / 2.0) * CELL_SIZE
+	return Vector3(x, 0, z)
 
 func build_level() -> void:
 	generate_grid()
