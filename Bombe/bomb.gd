@@ -1,3 +1,4 @@
+class_name Bomb
 extends Area3D
 
 ## Taille d'une case de la grille (doit correspondre au pas utilise par le joueur).

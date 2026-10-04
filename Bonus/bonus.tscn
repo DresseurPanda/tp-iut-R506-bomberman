@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://Bonus/bonus.gd" id="1_bonus"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bonus"]
+radius = 0.35
+
+[sub_resource type="BoxMesh" id="BoxMesh_bonus"]
+size = Vector3(0.4, 0.4, 0.4)
+
+[node name="Bonus" type="Area3D"]
+script = ExtResource("1_bonus")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_bonus")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_bonus")
