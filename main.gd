@@ -15,6 +15,17 @@ func _ready() -> void:
 	viewport_p1.world_3d = get_viewport().world_3d
 	viewport_p2.world_3d = get_viewport().world_3d
 	musique.play()
+	if not Joueur.deux_joueurs:
+		_afficher_hud_solo()
+
+
+## En solo il n'y a pas d'ecran partage : le HUD du joueur 1 s'affiche sur tout l'ecran.
+func _afficher_hud_solo() -> void:
+	var layer := CanvasLayer.new()
+	add_child(layer)
+	var hud = HUD_SCENE.instantiate()
+	hud.player = $Personnage
+	layer.add_child(hud)
 
 func _process(_delta: float) -> void:
 	if $SplitScreenUI.visible:
