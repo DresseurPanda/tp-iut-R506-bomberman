@@ -1,9 +1,14 @@
 extends CharacterBody3D
+class_name Joueur
+
 signal a_rejoint_partie
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 const BOMB_SCENE := preload("res://Bombe/bombe.tscn")
+
+## Partagé entre tous les joueurs : numéro du gagnant (0 = pas de vainqueur net / égalité).
+static var gagnant_numero: int = 0
 
 ## 1 = joueur 1 (touches habituelles), 2 = joueur 2 (touches p2_*)
 @export var numero_joueur: int = 1
@@ -28,6 +33,7 @@ var a_rejoint: bool = true
 
 func _ready() -> void:
 	Bomb.range_multiplier = 1.0
+	add_to_group("joueurs")
 	if numero_joueur == 2:
 		action_gauche = "p2_left"
 		action_droite = "p2_right"
@@ -107,6 +113,7 @@ func poser_bombe() -> void:
 	bomb.tree_exited.connect(func(): active_bomb_positions.erase(target_pos))
 
 func take_damage() -> void:
+	print("take_damage() joueur ", numero_joueur, " health avant=", health)
 	health -= 1
 	if health == 0:
 		mort()
@@ -114,8 +121,24 @@ func take_damage() -> void:
 	global_position = spawn_position
 
 func mort() -> void:
-	# US24 : ne déclenche le game over que si TOUS les joueurs actifs sont morts
+	print("mort() appelée pour joueur ", numero_joueur)
 	var joueurs := get_tree().get_nodes_in_group("joueurs")
-	var tous_morts := joueurs.all(func(j): return j.health <= 0)
-	if tous_morts:
+	print("joueurs trouvés dans le groupe : ", joueurs.size())
+	var joueurs_actifs := joueurs.filter(func(j): return j.a_rejoint)
+	print("joueurs actifs : ", joueurs_actifs.size())
+
+	if joueurs_actifs.size() < 2:
+		print("-> Mode solo détecté, game over")
 		get_tree().change_scene_to_file.call_deferred("res://GameOver/game_over.tscn")
+		return
+
+	var vivants := joueurs_actifs.filter(func(j): return j.health > 0)
+	print("vivants restants : ", vivants.size())
+	if vivants.size() == 1:
+		gagnant_numero = vivants[0].numero_joueur
+		print("-> Victoire du joueur ", gagnant_numero)
+		get_tree().change_scene_to_file.call_deferred("res://Victoire/victoire.tscn")
+	elif vivants.size() == 0:
+		gagnant_numero = 0
+		print("-> Égalité")
+		get_tree().change_scene_to_file.call_deferred("res://Victoire/victoire.tscn")

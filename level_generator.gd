@@ -4,6 +4,7 @@ const CELL_SIZE := 1
 const WIDTH := 17
 const HEIGHT := 17
 const PLAYER_SPAWN := Vector2i(1, 1)
+const PLAYER2_SPAWN := Vector2i( HEIGHT - 2, HEIGHT - 2)
 const SAFE_RADIUS := 5
 ## Distance minimale (en cases) entre deux ennemis au depart.
 const ENEMY_MIN_DISTANCE := 4
@@ -42,8 +43,10 @@ func generate_grid() -> void:
 				row.append(2 if randf() < brick_chance else 0)
 		grid.append(row)
 
-	# Zone de depart du joueur toujours libre (la case et ses voisines).
+	# Zone de depart des joueurs toujours libre (la case et ses voisines).
 	for cell in [PLAYER_SPAWN, PLAYER_SPAWN + Vector2i.RIGHT, PLAYER_SPAWN + Vector2i.DOWN]:
+		grid[cell.y][cell.x] = 0
+	for cell in [PLAYER2_SPAWN, PLAYER2_SPAWN + Vector2i.RIGHT, PLAYER2_SPAWN + Vector2i.UP]:
 		grid[cell.y][cell.x] = 0
 
 func get_walkable_cells_far_from_player() -> Array[Vector2i]:
@@ -52,8 +55,9 @@ func get_walkable_cells_far_from_player() -> Array[Vector2i]:
 		for x in range(WIDTH):
 			if grid[y][x] != 0:
 				continue
-			var dist = Vector2i(x, y).distance_to(PLAYER_SPAWN)
-			if dist >= SAFE_RADIUS:
+			var dist1 = Vector2i(x, y).distance_to(PLAYER_SPAWN)
+			var dist2 = Vector2i(x, y).distance_to(PLAYER2_SPAWN)
+			if dist1 >= SAFE_RADIUS and dist2 >= SAFE_RADIUS:
 				candidates.append(Vector2i(x, y))
 	return candidates
 
@@ -86,13 +90,18 @@ func get_cell_center(cell: Vector2i) -> Vector3:
 	var z := (cell.y + 0.5 - HEIGHT / 2.0) * CELL_SIZE
 	return Vector3(x, 0, z)
 
-## Deplace le(s) joueur(s) au centre de la case de depart (PLAYER_SPAWN), qui est
-## toujours libre. Les joueurs sont cherches dans la scene parente (main.tscn).
+## Deplace chaque joueur au centre de sa case de depart. Le joueur 1 spawn en haut
+## a gauche (PLAYER_SPAWN), le joueur 2 en bas a gauche (PLAYER2_SPAWN).
+## Les joueurs sont cherches dans la scene parente (main.tscn).
 func place_player() -> void:
-	var spawn_pos := to_global(get_cell_center(PLAYER_SPAWN))
-	for nom_joueur in ["Personnage", "Personnage2"]:
+	var spawns := {
+		"Personnage": PLAYER_SPAWN,
+		"Personnage2": PLAYER2_SPAWN,
+	}
+	for nom_joueur in spawns:
 		var player = get_parent().get_node_or_null(nom_joueur)
 		if player:
+			var spawn_pos := to_global(get_cell_center(spawns[nom_joueur]))
 			player.global_position = Vector3(spawn_pos.x, player.global_position.y, spawn_pos.z)
 			player.spawn_position = player.global_position
 
@@ -119,4 +128,4 @@ func build_level() -> void:
 	spawn_enemies()
 
 func _ready() -> void:
-	build_level()   
+	build_level()
