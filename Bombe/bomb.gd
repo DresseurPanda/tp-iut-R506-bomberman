@@ -125,6 +125,8 @@ func _explode_cell(cell_pos: Vector3) -> bool:
 	for ennemi in get_tree().get_nodes_in_group(GROUP_ENNEMI):
 		if _is_in_cell(ennemi, cell_pos):
 			ennemi.queue_free()
+			call_deferred("verifier_victoire")
+			
 
 	for joueur in get_tree().get_nodes_in_group(GROUP_JOUEUR):
 		# Le groupe contient aussi les enfants du personnage : on ne garde que le parent.
@@ -133,7 +135,10 @@ func _explode_cell(cell_pos: Vector3) -> bool:
 
 	print("Explosion sur la case : ", cell_pos)
 	return false
-
+	
+func verifier_victoire() -> void:
+	if get_tree().get_nodes_in_group("ennemi").size()==1:
+		get_tree().change_scene_to_file("res://VictoireSolo/victoire_solo.tscn")
 
 ## Fait apparaitre un bonus aleatoire a la place de la brique detruite.
 func _maybe_drop_bonus(pos: Vector3) -> void:

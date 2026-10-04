@@ -32,4 +32,12 @@ offset_bottom = 518.0
 theme_override_font_sizes/font_size = 30
 text = "Rejouer ?"
 
+[node name="Button2" type="Button" parent="." unique_id=2105100774]
+layout_mode = 0
+offset_left = 548.0
+offset_top = 542.0
+offset_right = 610.0
+offset_bottom = 578.0
+text = "Quitter ?"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

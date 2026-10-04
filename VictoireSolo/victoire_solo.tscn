@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://d1lwtrprmx7f"]
+
+[ext_resource type="Script" uid="uid://d37sjjhr3v0md" path="res://VictoireSolo/victoire_solo.gd" id="1_iqgjf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3d22t"]
+font_size = 100
+
+[node name="Victoire_solo" type="Node3D" unique_id=1780253588]
+script = ExtResource("1_iqgjf")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=510245327]
+offset_right = 1151.0
+offset_bottom = 651.0
+color = Color(0.39564443, 0.43678138, 0.66135347, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1785912471]
+offset_left = 356.0
+offset_top = 129.0
+offset_right = 794.0
+offset_bottom = 298.0
+text = "Victoire !"
+label_settings = SubResource("LabelSettings_3d22t")
+
+[node name="Quitter" type="Button" parent="." unique_id=2068326273]
+offset_left = 468.0
+offset_top = 460.0
+offset_right = 668.0
+offset_bottom = 540.0
+theme_override_font_sizes/font_size = 40
+text = "Quitter ?"
+
+[node name="Rejouer" type="Button" parent="." unique_id=609858023]
+offset_left = 468.0
+offset_top = 319.0
+offset_right = 668.0
+offset_bottom = 399.0
+theme_override_font_sizes/font_size = 40
+text = "Rejouer ?"
+
+[connection signal="pressed" from="Quitter" to="." method="_on_quitter_pressed"]
+[connection signal="pressed" from="Rejouer" to="." method="_on_button_rejouer"]

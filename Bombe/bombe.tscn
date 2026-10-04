@@ -3,6 +3,11 @@
 [ext_resource type="Script" uid="uid://dxrd636bgx76a" path="res://Bombe/bomb.gd" id="1_ux0ho"]
 [ext_resource type="PackedScene" uid="uid://frme45o1cjwv" path="res://Bombe/free_asset__pirate_bomb.glb" id="2_kjfnb"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_i857s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_solid"]
+size = Vector3(0.9, 1, 0.9)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rouge"]
 transparency = 1
 shading_mode = 0
@@ -30,11 +35,6 @@ _data = {
 &"clignote": SubResource("Animation_clignote")
 }
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_i857s"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_solid"]
-size = Vector3(0.9, 1, 0.9)
-
 [node name="Bomb" type="Area3D" unique_id=646015934]
 script = ExtResource("1_ux0ho")
 
@@ -49,12 +49,12 @@ shape = SubResource("SphereShape3D_i857s")
 [node name="Timer" type="Timer" parent="." unique_id=1073649688]
 wait_time = 2.0
 
-[node name="Solid" type="StaticBody3D" parent="."]
+[node name="Solid" type="StaticBody3D" parent="." unique_id=809142219]
 collision_layer = 0
 
-[node name="FormeBlocage" type="CollisionShape3D" parent="Solid"]
+[node name="FormeBlocage" type="CollisionShape3D" parent="Solid" unique_id=1539112561]
 shape = SubResource("BoxShape3D_solid")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1736331720]
 libraries/ = SubResource("AnimationLibrary_bombe")
-autoplay = "clignote"
+autoplay = &"clignote"
